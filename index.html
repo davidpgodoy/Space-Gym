@@ -35,6 +35,623 @@
     
     <!-- Space Gym - Tu lugar en El Pinar, Canelones -->
     <link rel="stylesheet" href="./css/styles.css">
+
+    <style>
+        /* ==========================================================================
+           New Balance Benefit & Hero Animations
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            height: auto !important;
+            padding: 120px 0 80px;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 992px) {
+            .hero-container {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 3.5rem;
+            }
+            .hero-content {
+                flex: 1;
+                max-width: 620px;
+            }
+            .hero-nb-wrapper {
+                flex-shrink: 0;
+                width: 390px;
+            }
+        }
+
+        /* Pill badge inside hero content */
+        .hero-nb-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 14px 6px 8px;
+            background: rgba(200, 230, 53, 0.08);
+            border: 1px solid rgba(200, 230, 53, 0.35);
+            border-radius: 9999px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: fit-content;
+        }
+
+        .hero-nb-pill:hover {
+            background: rgba(200, 230, 53, 0.16);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(200, 230, 53, 0.25);
+        }
+
+        .nb-pill-badge {
+            background: var(--color-accent);
+            color: #0D0D0D;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            letter-spacing: 0.75px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nb-pill-pulse-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0D0D0D;
+            animation: pillDotBlink 1.4s infinite;
+        }
+
+        @keyframes pillDotBlink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.7); }
+        }
+
+        .nb-pill-text {
+            font-size: 0.875rem;
+            color: #e4e4e7;
+            white-space: nowrap;
+        }
+
+        .nb-pill-text strong {
+            color: #ffffff;
+        }
+
+        .nb-pill-arrow {
+            color: var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-nb-pill:hover .nb-pill-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Floating Hero Card */
+        .hero-nb-wrapper {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+        }
+
+        .hero-nb-card {
+            display: block;
+            position: relative;
+            background: linear-gradient(145deg, #18181b 0%, #0d0d0e 100%);
+            border: 1px solid rgba(200, 230, 53, 0.3);
+            border-radius: 16px;
+            padding: 26px 24px;
+            text-decoration: none;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(200, 230, 53, 0.12);
+            animation: floatHeroCard 5.5s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes floatHeroCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-nb-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--color-accent);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(200, 230, 53, 0.28);
+            animation-play-state: paused;
+        }
+
+        /* Ambient rotating subtle glow */
+        .hero-nb-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(200, 230, 53, 0.09) 0%, transparent 60%);
+            pointer-events: none;
+            animation: rotateAmbient 12s linear infinite;
+        }
+
+        @keyframes rotateAmbient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Shimmer sweep */
+        .hero-nb-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+            transform: skewX(-20deg);
+            animation: shimmerSweep 6s infinite;
+        }
+
+        @keyframes shimmerSweep {
+            0%, 75% { left: -150%; }
+            100% { left: 200%; }
+        }
+
+        .hero-nb-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-nb-logos {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-nb-space {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .hero-nb-times {
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .hero-nb-brand {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-transform: lowercase;
+        }
+
+        .hero-nb-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            background: rgba(200, 230, 53, 0.12);
+            border: 1px solid rgba(200, 230, 53, 0.35);
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-nb-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            box-shadow: 0 0 8px var(--color-accent);
+            animation: beaconPulse 2s infinite;
+        }
+
+        @keyframes beaconPulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(200, 230, 53, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(200, 230, 53, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(200, 230, 53, 0); }
+        }
+
+        .hero-nb-hero-banner {
+            position: relative;
+            z-index: 2;
+            padding: 16px 0 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 18px;
+        }
+
+        .hero-nb-discount-num {
+            font-family: var(--font-heading);
+            font-size: 3.6rem;
+            line-height: 0.88;
+            color: var(--color-accent);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            text-shadow: 0 0 25px rgba(200, 230, 53, 0.3);
+        }
+
+        .hero-nb-discount-off {
+            font-size: 1.85rem;
+            color: #ffffff;
+        }
+
+        .hero-nb-sub {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .hero-nb-brand-highlight {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: var(--color-accent);
+            margin-top: 2px;
+        }
+
+        .hero-nb-locs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+        }
+
+        .hero-nb-loc-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-nb-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-nb-footer-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(200, 230, 53, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+
+        .hero-nb-card:hover .hero-nb-footer-arrow {
+            transform: translateX(4px);
+            background: var(--color-accent);
+            color: #0D0D0D;
+        }
+
+        /* ==========================================================================
+           Beneficios Section (#beneficios)
+           ========================================================================== */
+        .benefits-section {
+            position: relative;
+            background-color: var(--color-bg);
+        }
+
+        .benefit-card-showcase {
+            background: linear-gradient(145deg, #151518 0%, #0d0d0e 100%);
+            border: 1px solid rgba(200, 230, 53, 0.22);
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(200, 230, 53, 0.08);
+            position: relative;
+        }
+
+        @media (min-width: 992px) {
+            .benefit-card-showcase {
+                grid-template-columns: 1.15fr 0.85fr;
+            }
+        }
+
+        .benefit-card-body {
+            padding: 36px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .benefit-card-body {
+                padding: 48px;
+            }
+        }
+
+        .benefit-top-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(200, 230, 53, 0.1);
+            border: 1px solid rgba(200, 230, 53, 0.3);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            align-self: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .benefit-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            box-shadow: 0 0 6px var(--color-accent);
+        }
+
+        .benefit-header-logos {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .benefit-brand-space {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .benefit-brand-divider {
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .benefit-brand-nb {
+            font-family: var(--font-sans);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-transform: lowercase;
+        }
+
+        .benefit-big-deal {
+            margin-bottom: 24px;
+        }
+
+        .benefit-big-percent {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            line-height: 0.88;
+            color: var(--color-accent);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            text-shadow: 0 0 30px rgba(200, 230, 53, 0.35);
+        }
+
+        @media (min-width: 768px) {
+            .benefit-big-percent {
+                font-size: 5.5rem;
+            }
+        }
+
+        .benefit-big-off {
+            font-size: 2.5rem;
+            color: #ffffff;
+        }
+
+        .benefit-exclusive-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-top: 12px;
+        }
+
+        .benefit-target-brand {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: var(--color-accent);
+            margin-top: 4px;
+        }
+
+        .benefit-locations-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .benefit-location-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #d4d4d8;
+        }
+
+        .benefit-location-pill svg {
+            color: var(--color-accent);
+        }
+
+        .benefit-steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 22px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        @media (min-width: 640px) {
+            .benefit-steps-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        .benefit-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .step-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .step-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .step-info p {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .benefit-action-row {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        @media (min-width: 640px) {
+            .benefit-action-row {
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        .benefit-note {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        .benefit-card-media {
+            position: relative;
+            min-height: 340px;
+            background: #111113;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .benefit-media-fallback {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            background: radial-gradient(circle at center, #232328 0%, #0d0d0e 80%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 24px;
+            text-align: center;
+        }
+
+        .media-fallback-sneaker {
+            margin-bottom: 20px;
+            color: var(--color-accent);
+            animation: floatHeroCard 4s ease-in-out infinite;
+        }
+
+        .media-fallback-title {
+            font-family: var(--font-heading);
+            font-size: 2.25rem;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .media-fallback-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-accent);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
@@ -53,6 +670,7 @@
                     <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
                     <li><a href="#instalaciones" class="nav-link">Instalaciones</a></li>
                     <li><a href="#planes" class="nav-link">Planes</a></li>
+                    <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
                     <li><a href="#comunidad" class="nav-link">Comunidad</a></li>
                     <li><a href="#space-shop" class="nav-link">Space Shop</a></li>
                     <li><a href="#contacto" class="nav-link">Contacto</a></li>
@@ -77,6 +695,16 @@
             <div class="hero-bg"></div>
             <div class="container hero-container">
                 <div class="hero-content reveal-up">
+                    <a href="#beneficios" class="hero-nb-pill" aria-label="Nuevo beneficio 20% OFF en New Balance para socios activos">
+                        <span class="nb-pill-badge">
+                            <span class="nb-pill-pulse-dot"></span> NUEVO BENEFICIO
+                        </span>
+                        <span class="nb-pill-text"><strong>20% OFF</strong> en <strong>New Balance</strong> para socios</span>
+                        <span class="nb-pill-arrow">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </a>
+
                     <img src="./assets/logo.svg" alt="Space Gym Logo" class="hero-logo" onerror="this.outerHTML='<span class=\'logo-fallback hero-logo-fallback\'>SPACE GYM</span>'">
                     <p class="eyebrow">EL PINAR, CIUDAD DE LA COSTA</p>
                     <h1 class="hero-title">TU LUGAR EN <span class="text-accent">EL PINAR</span></h1>
@@ -85,6 +713,41 @@
                         <a href="https://wa.link/97wb8t" target="_blank" rel="noopener noreferrer" class="btn btn-primary">EMPEZÁ HOY</a>
                         <a href="#planes" class="btn btn-outline">VER PLANES</a>
                     </div>
+                </div>
+
+                <!-- Animated Floating Hero Card for New Balance -->
+                <div class="hero-nb-wrapper reveal-up" style="transition-delay: 200ms;">
+                    <a href="#beneficios" class="hero-nb-card" aria-label="Ver beneficio 20% OFF en New Balance">
+                        <div class="hero-nb-top">
+                            <div class="hero-nb-logos">
+                                <span class="hero-nb-space">SPACE GYM</span>
+                                <span class="hero-nb-times">×</span>
+                                <span class="hero-nb-brand">new balance</span>
+                            </div>
+                            <span class="hero-nb-status">
+                                <span class="hero-nb-status-dot"></span> ACTIVO
+                            </span>
+                        </div>
+                        
+                        <div class="hero-nb-hero-banner">
+                            <div class="hero-nb-discount-num">
+                                20% <span class="hero-nb-discount-off">OFF</span>
+                            </div>
+                            <div class="hero-nb-sub">EXCLUSIVO SOCIOS ACTIVOS</div>
+                            <div class="hero-nb-brand-highlight">EN NEW BALANCE</div>
+                            <div class="hero-nb-locs">
+                                <span class="hero-nb-loc-chip">📍 Costa Urbana</span>
+                                <span class="hero-nb-loc-chip">📍 Portones</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-nb-footer">
+                            <span>Ver pasos para canjear</span>
+                            <span class="hero-nb-footer-arrow">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </span>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="scroll-indicator">
@@ -271,6 +934,92 @@
                 <div class="pricing-footer reveal-up" style="margin-top: 3rem;">
                     <p style="font-size: 1.125rem; margin-bottom: 1rem;">💳 Formas de pago: efectivo o transferencia bancaria.</p>
                     <p>¿Tenés dudas? Escribinos por WhatsApp y te asesoramos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFICIOS EXCLUSIVOS -->
+        <section class="benefits-section section" id="beneficios">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <h2 class="section-title">BENEFICIOS <span class="text-accent">EXCLUSIVOS</span></h2>
+                    <p class="section-intro">Ser socio activo de Space Gym te da acceso a convenios y descuentos especiales en las mejores marcas deportivas.</p>
+                </div>
+
+                <div class="benefit-card-showcase reveal-up">
+                    <div class="benefit-card-body">
+                        <div class="benefit-top-badge">
+                            <span class="benefit-badge-dot"></span> CONVENIO OFICIAL
+                        </div>
+
+                        <div class="benefit-header-logos">
+                            <span class="benefit-brand-space">SPACE GYM</span>
+                            <span class="benefit-brand-divider">×</span>
+                            <span class="benefit-brand-nb">new balance</span>
+                        </div>
+
+                        <div class="benefit-big-deal">
+                            <div class="benefit-big-percent">
+                                20% <span class="benefit-big-off">OFF</span>
+                            </div>
+                            <div class="benefit-exclusive-text">EXCLUSIVO PARA SOCIOS ACTIVOS</div>
+                            <div class="benefit-target-brand">EN NEW BALANCE</div>
+                        </div>
+
+                        <div class="benefit-locations-bar">
+                            <span class="benefit-location-pill">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Costa Urbana Shopping
+                            </span>
+                            <span class="benefit-location-pill">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Portones Shopping
+                            </span>
+                        </div>
+
+                        <div class="benefit-steps-grid">
+                            <div class="benefit-step">
+                                <div class="step-number">01</div>
+                                <div class="step-info">
+                                    <h4>PASÁ POR ADMINISTRACIÓN</h4>
+                                    <p>Verificamos que tu cédula esté registrada como socio activo en el gimnasio.</p>
+                                </div>
+                            </div>
+                            <div class="benefit-step">
+                                <div class="step-number">02</div>
+                                <div class="step-info">
+                                    <h4>PRESENTÁ TU CÉDULA</h4>
+                                    <p>En los locales de New Balance de Costa Urbana Shopping y Portones Shopping al momento de pagar.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="benefit-action-row">
+                            <a href="https://wa.link/33gzo6" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                CONSULTAR EN ADMINISTRACIÓN
+                            </a>
+                            <span class="benefit-note">Beneficio habilitado automáticamente para todos nuestros socios con cuota al día.</span>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card-media">
+                        <img src="./assets/beneficio-newbalance.jpeg" alt="20% OFF en New Balance - Beneficio Socios Space Gym" class="benefit-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        
+                        <!-- Fallback visual if image has not yet been uploaded to assets folder -->
+                        <div class="benefit-media-fallback" style="display: none;">
+                            <div class="media-fallback-sneaker">
+                                <svg viewBox="0 0 120 70" width="120" height="70" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M10 50 C20 48, 30 48, 45 48 C60 48, 85 45, 105 50 C110 52, 110 58, 105 60 C90 62, 30 62, 12 60 C8 58, 8 52, 10 50 Z" fill="rgba(200, 230, 53, 0.15)" stroke="var(--color-accent)"/>
+                                    <path d="M25 48 C20 38, 22 25, 30 20 C36 16, 46 25, 52 35 C65 38, 80 40, 95 44 C102 46, 105 48, 105 50" stroke="#ffffff"/>
+                                    <path d="M42 22 L55 35 M50 20 L62 33 M58 20 L70 32" stroke="rgba(255,255,255,0.6)"/>
+                                    <circle cx="34" cy="22" r="3" fill="var(--color-accent)"/>
+                                </svg>
+                            </div>
+                            <div class="media-fallback-title">SPACE GYM <span style="color: var(--color-accent);">×</span> NB</div>
+                            <div class="media-fallback-subtitle">20% OFF SOCIOS ACTIVOS</div>
+                            <div style="font-size: 0.85rem; color: #a1a1aa; margin-top: 10px;">Costa Urbana Shopping & Portones Shopping</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -532,6 +1281,7 @@
                 <a href="#nosotros">Nosotros</a>
                 <a href="#instalaciones">Instalaciones</a>
                 <a href="#planes">Planes</a>
+                <a href="#beneficios">Beneficios</a>
                 <a href="#comunidad">Comunidad</a>
                 <a href="#space-shop">Space Shop</a>
             </div>
