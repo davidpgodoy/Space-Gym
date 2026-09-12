@@ -651,6 +651,132 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
+
+        /* ==========================================================================
+           Navbar Desktop Optimization
+           ========================================================================== */
+        @media (min-width: 1024px) {
+            .navbar {
+                height: 76px;
+            }
+            .nav-container {
+                max-width: 1360px;
+                padding: 0 28px;
+            }
+            .nav-list {
+                gap: 20px;
+            }
+            .nav-link {
+                font-size: 0.825rem;
+                letter-spacing: 0.75px;
+                padding: 6px 2px;
+            }
+            .nav-actions {
+                margin-left: 8px;
+            }
+            .nav-cta {
+                padding: 9px 20px;
+                font-size: 0.95rem;
+                letter-spacing: 0.75px;
+                white-space: nowrap;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .nav-list {
+                gap: 26px;
+            }
+            .nav-link {
+                font-size: 0.885rem;
+                letter-spacing: 1px;
+            }
+            .nav-cta {
+                padding: 10px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .nav-list {
+                gap: 32px;
+            }
+            .nav-link {
+                font-size: 0.935rem;
+            }
+        }
+
+        /* ==========================================================================
+           Pase Libre Card in Beneficios
+           ========================================================================== */
+        .benefit-card-paselibre {
+            margin-top: 32px;
+            background: linear-gradient(145deg, #161619 0%, #0e0e11 100%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+            position: relative;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-card-paselibre:hover {
+            border-color: rgba(200, 230, 53, 0.3);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 25px rgba(200, 230, 53, 0.08);
+        }
+
+        @media (min-width: 992px) {
+            .benefit-card-paselibre {
+                grid-template-columns: 1.15fr 0.85fr;
+            }
+        }
+
+        .paselibre-media-box {
+            background: radial-gradient(circle at center, #1f1f24 0%, #0d0d0e 85%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 28px;
+            min-height: 280px;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (min-width: 992px) {
+            .paselibre-media-box {
+                border-top: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        .paselibre-logo-img {
+            max-height: 95px;
+            width: auto;
+            max-width: 260px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card-paselibre:hover .paselibre-logo-img {
+            transform: scale(1.04);
+        }
+
+        .paselibre-chip {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            color: #d4d4d8;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
@@ -666,7 +792,6 @@
             
             <nav class="nav-menu" id="nav-menu">
                 <ul class="nav-list">
-                    <li><a href="#" class="nav-link">Inicio</a></li>
                     <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
                     <li><a href="#instalaciones" class="nav-link">Instalaciones</a></li>
                     <li><a href="#planes" class="nav-link">Planes</a></li>
@@ -923,12 +1048,7 @@
                             <li><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Asesoramiento y seguimiento</li>
                         </ul>
                         <a href="https://wa.link/33gzo6" target="_blank" rel="noopener noreferrer" class="btn btn-outline plan-btn">ELEGIR PLAN</a>
-                    </div></div>
-
-                <div class="partners-banner reveal-up" style="margin-top: 4rem; padding: 2.5rem 2rem; background-color: var(--color-bg-card); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
-                    <h3 style="font-size: 1.125rem; font-weight: 500; color: var(--color-text-muted); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px;">También estamos adheridos a</h3>
-                    <img src="./assets/paselibre.jpeg" alt="Pase Libre" style="max-height: 80px; width: auto; max-width: 100%; display: inline-block; object-fit: contain;">
-                    <p style="margin-top: 2rem; font-size: 1.05rem; color: #a1a1aa; max-width: 650px; margin-inline: auto; line-height: 1.6;">Si tu empresa tiene convenio con <strong>Pase Libre</strong>, ¡podés utilizar tu beneficio corporativo para venir a entrenar con nosotros en cualquier horario!</p>
+                    </div>
                 </div>
 
                 <div class="pricing-footer reveal-up" style="margin-top: 3rem;">
@@ -943,9 +1063,10 @@
             <div class="container">
                 <div class="section-header reveal-up">
                     <h2 class="section-title">BENEFICIOS <span class="text-accent">EXCLUSIVOS</span></h2>
-                    <p class="section-intro">Ser socio activo de Space Gym te da acceso a convenios y descuentos especiales en las mejores marcas deportivas.</p>
+                    <p class="section-intro">Descuentos en primeras marcas y convenios corporativos para entrenar con total flexibilidad.</p>
                 </div>
 
+                <!-- Showcase New Balance -->
                 <div class="benefit-card-showcase reveal-up">
                     <div class="benefit-card-body">
                         <div class="benefit-top-badge">
@@ -1019,6 +1140,56 @@
                             <div class="media-fallback-subtitle">20% OFF SOCIOS ACTIVOS</div>
                             <div style="font-size: 0.85rem; color: #a1a1aa; margin-top: 10px;">Costa Urbana Shopping & Portones Shopping</div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Convenio Corporativo Pase Libre -->
+                <div class="benefit-card-paselibre reveal-up">
+                    <div class="benefit-card-body">
+                        <div class="benefit-top-badge" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); color: #ffffff;">
+                            <span class="benefit-badge-dot" style="background: #ffffff; box-shadow: 0 0 6px #ffffff;"></span> BENEFICIO CORPORATIVO
+                        </div>
+
+                        <div class="benefit-big-deal" style="margin-bottom: 18px;">
+                            <h3 style="font-family: var(--font-heading); font-size: 2.25rem; letter-spacing: 1px; color: #ffffff; margin-bottom: 6px;">
+                                CONVENIO CON <span class="text-accent">PASE LIBRE</span>
+                            </h3>
+                            <p style="font-size: 1rem; color: #a1a1aa; line-height: 1.6; max-width: 620px;">
+                                Si tu empresa cuenta con el beneficio corporativo de <strong>Pase Libre</strong>, estás habilitado para entrenar en Space Gym con total flexibilidad de horarios y acceso a todas nuestras salas.
+                            </p>
+                        </div>
+
+                        <div class="benefit-steps-grid" style="margin-bottom: 24px;">
+                            <div class="benefit-step">
+                                <div class="step-number" style="color: #ffffff;">01</div>
+                                <div class="step-info">
+                                    <h4>HABILITÁ TU APP</h4>
+                                    <p>Ingresá a tu cuenta en la app de Pase Libre provista por tu empresa o empleador.</p>
+                                </div>
+                            </div>
+                            <div class="benefit-step">
+                                <div class="step-number" style="color: #ffffff;">02</div>
+                                <div class="step-info">
+                                    <h4>CHECK-IN EN SPACE</h4>
+                                    <p>Mostrá tu pase en la recepción del gimnasio y empezá a entrenar cuando quieras.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="benefit-action-row">
+                            <a href="https://wa.link/97wb8t" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: var(--color-accent); color: var(--color-accent);">
+                                CONSULTAR POR TU EMPRESA
+                            </a>
+                            <span class="benefit-note">¿Querés sumar a tu empresa? Escribinos y coordinamos la incorporación.</span>
+                        </div>
+                    </div>
+
+                    <div class="paselibre-media-box">
+                        <img src="./assets/paselibre.jpeg" alt="Pase Libre - Beneficio Corporativo Space Gym" class="paselibre-logo-img">
+                        <span class="paselibre-chip">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Gimnasio Oficial Adherido
+                        </span>
                     </div>
                 </div>
             </div>
