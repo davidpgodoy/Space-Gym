@@ -1,5 +1,6 @@
 {
   "name": "Space Gym - Pinar",
   "description": "Tu Gimnasio en El Pinar — Guía Profesional Incluida",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

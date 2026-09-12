@@ -11,6 +11,11 @@
     <meta property="og:image" content="assets/og-image.jpg">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://spacegym.com.uy">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="alternate icon" type="image/svg+xml" href="./assets/logo.svg">
+    <link rel="apple-touch-icon" href="./assets/logo.svg">
 
     <script type="application/ld+json">
     {
@@ -43,7 +48,13 @@
         .hero {
             min-height: 100vh;
             height: auto !important;
-            padding: 120px 0 80px;
+            padding: 100px 0 60px;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
         }
 
         .hero-container {
@@ -53,6 +64,11 @@
             gap: 2.5rem;
             position: relative;
             z-index: 1;
+        }
+
+        /* Hide duplicate promo card on mobile/tablet; show on desktop 2-column hero */
+        .hero-nb-wrapper {
+            display: none;
         }
 
         @media (min-width: 992px) {
@@ -67,8 +83,10 @@
                 max-width: 620px;
             }
             .hero-nb-wrapper {
+                display: block;
                 flex-shrink: 0;
                 width: 390px;
+                position: relative;
             }
         }
 
@@ -76,8 +94,8 @@
         .hero-nb-pill {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 6px 14px 6px 8px;
+            gap: 7px;
+            padding: 4px 10px 4px 5px;
             background: rgba(200, 230, 53, 0.08);
             border: 1px solid rgba(200, 230, 53, 0.35);
             border-radius: 9999px;
@@ -86,7 +104,8 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             backdrop-filter: blur(8px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            max-width: fit-content;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .hero-nb-pill:hover {
@@ -100,23 +119,57 @@
             background: var(--color-accent);
             color: #0D0D0D;
             font-family: var(--font-heading);
-            font-size: 0.8rem;
-            letter-spacing: 0.75px;
-            padding: 4px 10px;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
             border-radius: 9999px;
             font-weight: 700;
             text-transform: uppercase;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1;
         }
 
         .nb-pill-pulse-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: #0D0D0D;
             animation: pillDotBlink 1.4s infinite;
+            flex-shrink: 0;
+        }
+
+        .badge-txt-short {
+            display: inline;
+        }
+        .badge-txt-full {
+            display: none;
+        }
+        .nb-pill-extra {
+            display: none;
+        }
+
+        @media (min-width: 480px) {
+            .hero-nb-pill {
+                gap: 9px;
+                padding: 5px 14px 5px 6px;
+            }
+            .nb-pill-badge {
+                font-size: 0.78rem;
+                padding: 4px 10px;
+            }
+            .badge-txt-short {
+                display: none;
+            }
+            .badge-txt-full {
+                display: inline;
+            }
+            .nb-pill-extra {
+                display: inline;
+            }
         }
 
         @keyframes pillDotBlink {
@@ -125,9 +178,18 @@
         }
 
         .nb-pill-text {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: #e4e4e7;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 480px) {
+            .nb-pill-text {
+                font-size: 0.875rem;
+            }
         }
 
         .nb-pill-text strong {
@@ -138,11 +200,12 @@
             color: var(--color-accent);
             display: inline-flex;
             align-items: center;
+            flex-shrink: 0;
             transition: transform 0.3s ease;
         }
 
         .hero-nb-pill:hover .nb-pill-arrow {
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
 
         /* Floating Hero Card */
@@ -822,11 +885,13 @@
                 <div class="hero-content reveal-up">
                     <a href="#beneficios" class="hero-nb-pill" aria-label="Nuevo beneficio 20% OFF en New Balance para socios activos">
                         <span class="nb-pill-badge">
-                            <span class="nb-pill-pulse-dot"></span> NUEVO BENEFICIO
+                            <span class="nb-pill-pulse-dot"></span>
+                            <span class="badge-txt-short">NUEVO</span>
+                            <span class="badge-txt-full">NUEVO BENEFICIO</span>
                         </span>
-                        <span class="nb-pill-text"><strong>20% OFF</strong> en <strong>New Balance</strong> para socios</span>
+                        <span class="nb-pill-text"><strong>20% OFF</strong> en <strong>New Balance</strong><span class="nb-pill-extra"> para socios</span></span>
                         <span class="nb-pill-arrow">
-                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </span>
                     </a>
 
