@@ -892,8 +892,107 @@ h1, h2, h3, h4, h5, h6, .eyebrow, .pull-quote {
     font-family: var(--font-heading);
     font-size: 2rem;
     color: var(--color-accent);
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     line-height: 1;
+}
+
+/* Merch Badges & Status */
+.merch-badge-status {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 15;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.merch-badge-status.soldout {
+    background: rgba(18, 18, 18, 0.88);
+    border: 1px solid rgba(239, 68, 68, 0.65);
+    color: #ef4444;
+}
+
+.merch-badge-status.available {
+    background: rgba(18, 18, 18, 0.88);
+    border: 1px solid rgba(200, 230, 53, 0.65);
+    color: var(--color-accent);
+}
+
+.merch-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.merch-badge-status.soldout .merch-status-dot {
+    background: #ef4444;
+    box-shadow: 0 0 8px #ef4444;
+}
+
+.merch-badge-status.available .merch-status-dot {
+    background: var(--color-accent);
+    box-shadow: 0 0 8px var(--color-accent);
+    animation: statusPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+.merch-status-notice {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.3px;
+}
+
+.merch-status-notice.soldout {
+    color: #ef4444;
+}
+
+.merch-status-notice.available {
+    color: var(--color-accent);
+}
+
+.merch-status-notice svg {
+    flex-shrink: 0;
+}
+
+.btn-soldout {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    color: #fca5a5;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+    transition: all var(--transition-normal);
+}
+
+.btn-soldout:hover {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: #ef4444;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25);
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
